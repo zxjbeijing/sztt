@@ -8,4 +8,5 @@ urlpatterns = [
     path('article_list', api_views.article_list),
     path('category/add', api_views.add_category),
     path('category/list', api_views.category_list),
+    path('collection', api_views.chiscollection),
 ]
