@@ -171,7 +171,7 @@ def chislike(request):
         return make_response(
             {
                 "article_id": art_id,
-                "iscollection": article_obj.islike
+                "islike": article_obj.islike
             },
             status.HTTP_200_OK
         )
