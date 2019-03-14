@@ -46,7 +46,7 @@ def get_article_info():
         import re
         res = re.findall(r'\d+', _str)
         return int(res[0]) if res else None
-    
+
     def randomint():
         return str(randint(0, 9))
 
@@ -72,7 +72,6 @@ def get_article_info():
                 }
             except Exception as e:
                 pass
-
 
 
 def get_article(_article_info):
@@ -164,7 +163,9 @@ def get_article(_article_info):
             article_source=source,
             article_editor=editor,
             article_cover=cover,
-            article_category=category.objects.get(category_id=_article_info['cat_id'])
+            article_category=category.objects.get(
+                category_id=_article_info['cat_id']),
+            iscollection=False
         )
         article_obj.save()
         return

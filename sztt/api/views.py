@@ -88,7 +88,7 @@ def article_list(request):
                 )
         except Exception as e:
             print(e)
-            return make_response("Article Not Exist", status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return make_response("Article Not Exist", status.HTTP_404_NOT_FOUND)
         return make_response(article_list)
 
 
@@ -130,3 +130,24 @@ def category_list(request):
                 }
             )
         return make_response(catdict, status.HTTP_200_OK)
+
+
+@csrf_exempt
+def chiscollection(request):
+    if request.method != 'POST':
+        return make_response("Method Not Allowed", status.HTTP_405_METHOD_NOT_ALLOWED)
+    else:
+        try:
+            art_id = request.POST['article_id']
+            article_obj = articl.objects.get(article_id=art_id)
+            article_obj.iscollection = False if article_obj.iscollection else True
+            article_obj.save()
+        except Exception:
+            return make_response("Article Not Exist", status.HTTP_404_NOT_FOUND)
+        return make_response(
+            {
+                "article_id": art_id,
+                "iscollection": article_obj.iscollection
+            },
+            status.HTTP_200_OK
+        )
