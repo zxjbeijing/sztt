@@ -44,7 +44,8 @@ def getarticle(request, _id):
                         "id": article_obj.article_category.category_id,
                         "display_name": article_obj.article_category.category_name
                     },
-                    "iscollection": article_obj.iscollection
+                    "iscollection": article_obj.iscollection,
+                    "islike": article_obj.islike
                 }
             )
         except Exception as e:

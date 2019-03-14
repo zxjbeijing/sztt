@@ -17,6 +17,7 @@ class article(models.Model):
         on_delete=models.SET_DEFAULT
     )
     iscollection = models.BooleanField(default=False)
+    islike = models.BooleanField(default=False)
 
 
 class category(models.Model):

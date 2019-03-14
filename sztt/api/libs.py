@@ -165,7 +165,8 @@ def get_article(_article_info):
             article_cover=cover,
             article_category=category.objects.get(
                 category_id=_article_info['cat_id']),
-            iscollection=False
+            iscollection=False,
+            islike=False
         )
         article_obj.save()
         return
