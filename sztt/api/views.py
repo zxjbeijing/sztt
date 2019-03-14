@@ -140,7 +140,7 @@ def chiscollection(request):
     else:
         try:
             art_id = request.POST['article_id']
-            article_obj = articl.objects.get(article_id=art_id)
+            article_obj = article.objects.get(article_id=art_id)
             article_obj.iscollection = False if article_obj.iscollection else True
             article_obj.save()
         except Exception:
