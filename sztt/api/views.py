@@ -86,7 +86,8 @@ def article_list(request):
                             "id": article_obj.article_category.category_id,
                             "display_name": article_obj.article_category.category_name
                         },
-                        "iscollection": article_obj.iscollection
+                        "iscollection": article_obj.iscollection,
+                        "islike": article_obj.islike
                     }
                 )
         except Exception as e:
@@ -151,6 +152,26 @@ def chiscollection(request):
             {
                 "article_id": art_id,
                 "iscollection": article_obj.iscollection
+            },
+            status.HTTP_200_OK
+        )
+
+@csrf_exempt
+def chislike(request):
+    if request.method != 'POST':
+        return make_response("Method Not Allowed", status.HTTP_405_METHOD_NOT_ALLOWED)
+    else:
+        try:
+            art_id = request.POST['article_id']
+            article_obj = article.objects.get(article_id=art_id)
+            article_obj.islike = False if article_obj.iscollection else True
+            article_obj.save()
+        except Exception:
+            return make_response("Article Not Exist", status.HTTP_404_NOT_FOUND)
+        return make_response(
+            {
+                "article_id": art_id,
+                "iscollection": article_obj.islike
             },
             status.HTTP_200_OK
         )

@@ -9,4 +9,5 @@ urlpatterns = [
     path('category/add', api_views.add_category),
     path('category/list', api_views.category_list),
     path('collection', api_views.chiscollection),
+    path('like', api_views.chislike),
 ]
