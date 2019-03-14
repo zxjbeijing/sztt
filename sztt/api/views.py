@@ -84,7 +84,8 @@ def article_list(request):
                         "category": {
                             "id": article_obj.article_category.category_id,
                             "display_name": article_obj.article_category.category_name
-                        }
+                        },
+                        "iscollection": article_obj.iscollecyion
                     }
                 )
         except Exception as e:
